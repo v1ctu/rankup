@@ -1,0 +1,15 @@
+ranks:
+  coal_iii:
+    name: "&3[Coal III]"
+    price: 2500.0
+    position: 0
+  coal_ii:
+    name: "&3[Coal II]"
+    price: 5000.0
+    position: 1
+  coal_i:
+    name: "&3[Coal I]"
+    price: 7500.0
+    position: 2
+    on_rankup:
+      - 'say totozinho :3 :3 :3'
