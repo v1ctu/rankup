@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -19,10 +20,12 @@ public class UserEntity {
     private UUID uuid;
     private Rank rank;
 
+    @BsonIgnore
     public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
     }
 
+    @BsonIgnore
     public OfflinePlayer getOfflinePlayer() {
         return Bukkit.getOfflinePlayer(uuid);
     }
