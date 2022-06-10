@@ -3,6 +3,7 @@ package com.github.v1ctu.command;
 import com.github.v1ctu.RankupPlugin;
 import com.github.v1ctu.entity.Rank;
 import com.github.v1ctu.entity.UserEntity;
+import com.github.v1ctu.view.RankView;
 import lombok.AllArgsConstructor;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.command.Context;
@@ -11,6 +12,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -21,18 +23,20 @@ public class RanksCommand {
     @Command(name = "ranks", target = CommandTarget.PLAYER)
     public void handleCommand(Context<Player> context) {
         Player player = context.getSender();
-        player.sendMessage(new String[]{
-            "",
-            "§e§lRANKS",
-            ""
-        });
+//        player.sendMessage(new String[]{
+//            "",
+//            "§e§lRANKS",
+//            ""
+//        });
+//
+//        List<Rank> ranks = rankupPlugin.getRankCache().getValues().stream()
+//            .sorted(Comparator.comparingInt(Rank::getPosition))
+//            .toList();
+//        for (Rank rank : ranks) {
+//            player.sendMessage(rank.getName() + " §8- §7" + rank.getPrice());
+//        }
 
-        List<Rank> ranks = rankupPlugin.getRankCache().getValues().stream()
-            .sorted(Comparator.comparingInt(Rank::getPosition))
-            .toList();
-        for (Rank rank : ranks) {
-            player.sendMessage(rank.getName() + " §8- §7" + rank.getPrice());
-        }
+        rankupPlugin.getViewFrame().open(RankView.class, player, Map.of("ranks", rankupPlugin.getRankCache().getValues().stream().toList()));
 
         player.sendMessage("");
     }
